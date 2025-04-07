@@ -12,11 +12,13 @@ Obtained initial cert via removing/commenting out all ssl related stuff from [he
 
 ```sh
 docker run -it --rm \
-  -v $(pwd)/nginx/certs:/etc/letsencrypt \
-  -v $(pwd)/nginx/certs-data:/data/letsencrypt \
+  -v ./nginx/certs:/etc/letsencrypt \
+  -v ./nginx/certs-data:/data/letsencrypt \
   certbot/certbot certonly --webroot \
   --webroot-path=/data/letsencrypt \
-  -d apps.ttj.hu -d ora-amp-1.ttj.hu
+  -d apps.ttj.hu \
+  -d veripalvelu.ttj.hu \
+  -d saldo.ttj.hu
 ```
 
 Upon success restore the above lines.
