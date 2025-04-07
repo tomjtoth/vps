@@ -9,6 +9,7 @@ services:
       - nginx
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/snippets:/etc/nginx/snippets
       - ./nginx/certs:/etc/letsencrypt
       - ./nginx/certs-data:/data/letsencrypt
       - ./html:/usr/share/nginx/html
