@@ -28,6 +28,7 @@ services:
       test: ["CMD-SHELL", "[ -f /etc/letsencrypt/live/ttj.hu/fullchain.pem ]"]
       interval: 5s
       start_period: 0s
+      start_interval: 1s
       timeout: 10s
       retries: 12
 
