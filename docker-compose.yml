@@ -16,6 +16,7 @@ services:
       - 80:80
       - 443:443
     networks:
+      - default
       - vp
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
@@ -26,6 +27,8 @@ services:
     depends_on:
       certbot:
         condition: service_healthy
+      done:
+        condition: service_started
 
   certbot:
     image: certbot/dns-cloudflare
