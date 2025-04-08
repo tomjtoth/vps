@@ -20,7 +20,7 @@ services:
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/snippets:/etc/nginx/snippets
-      - ./certificate:/etc/letsencrypt
+      - ~/.vps-certificate:/etc/letsencrypt
       - ./html:/usr/share/nginx/html
     restart: unless-stopped
     depends_on:
@@ -32,7 +32,7 @@ services:
     container_name: certbot
     restart: unless-stopped
     volumes:
-      - ./certificate:/etc/letsencrypt
+      - ~/.vps-certificate:/etc/letsencrypt
       - ./certbot.sh:/certbot.sh
       - ~/.cloudflare.ini:/etc/letsencrypt/cloudflare.ini:ro
     entrypoint: /certbot.sh
