@@ -44,6 +44,12 @@ services:
       timeout: 10s
       retries: 12
 
+  # this is a mini-app for a HY course
+  done:
+    container_name: done
+    image: tomjtoth/done
+    restart: unless-stopped
+
 networks:
   vp:
     name: veripalvelu_default
