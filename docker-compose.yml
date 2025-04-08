@@ -14,7 +14,8 @@ services:
       - ./html:/usr/share/nginx/html
     restart: unless-stopped
     depends_on:
-      - certbot
+      certbot:
+        condition: service_healthy
 
   certbot:
     image: certbot/dns-cloudflare
@@ -25,6 +26,11 @@ services:
       - ./certbot.sh:/certbot.sh
       - ~/.cloudflare.ini:/etc/letsencrypt/cloudflare.ini:ro
     entrypoint: /certbot.sh
+    healthcheck:
+      test: ["CMD-SHELL", "[ -f /etc/letsencrypt/live/ttj.hu/fullchain.pem ]"]
+      interval: 5s
+      timeout: 10s
+      retries: 12
 
 networks:
   vp:
