@@ -1,6 +1,6 @@
 # Kuvaus
 
-Tässä konfiguraatio joka palvelee Ruotsissa (kiitos [Oracle Cloud Free Tier](https://www.oracle.com/cloud/free/)).
+Tässä konfiguraatio joka palvelee [Ruotsissa](https://apps.ttj.hu) (kiitos [Oracle Cloud Free Tier](https://www.oracle.com/cloud/free/)).
 
 ## Tuotantoon
 
