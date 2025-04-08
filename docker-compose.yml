@@ -37,7 +37,7 @@ services:
       - ~/.cloudflare.ini:/etc/letsencrypt/cloudflare.ini:ro
     entrypoint: /certbot.sh
     healthcheck:
-      test: ["CMD-SHELL", "[ -f /etc/letsencrypt/live/ttj.hu/fullchain.pem ]"]
+      test: ["CMD-SHELL", "test -f /etc/letsencrypt/live/ttj.hu/fullchain.pem"]
       interval: 5s
       start_period: 0s
       start_interval: 1s
