@@ -1,4 +1,9 @@
 services:
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: unless-stopped
+
   nginx:
     image: nginx:alpine
     container_name: nginx
