@@ -20,5 +20,5 @@ while :; do
         --dns-cloudflare-credentials /etc/letsencrypt/cloudflare.ini \
         --post-hook "echo Certificates renewed!";
 
-    sleep 12h & wait $${!};
+    sleep 12h & wait $!;
 done
