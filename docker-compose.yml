@@ -6,7 +6,7 @@ services:
       - 80:80
       - 443:443
     networks:
-      - nginx
+      - vp
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/snippets:/etc/nginx/snippets
@@ -27,5 +27,6 @@ services:
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
 networks:
-  nginx:
-    name: nginx
+  vp:
+    name: veripalvelu_default
+    external: true
