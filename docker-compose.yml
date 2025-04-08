@@ -11,20 +11,41 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/snippets:/etc/nginx/snippets
       - ./nginx/certs:/etc/letsencrypt
-      - ./nginx/certs-data:/data/letsencrypt
       - ./html:/usr/share/nginx/html
     restart: unless-stopped
     depends_on:
       - certbot
 
   certbot:
-    image: certbot/certbot
+    image: certbot/dns-cloudflare
     container_name: certbot
     restart: unless-stopped
     volumes:
       - ./nginx/certs:/etc/letsencrypt
-      - ./nginx/certs-data:/data/letsencrypt
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+      - ~/.cloudflare.ini:/etc/letsencrypt/cloudflare.ini:ro
+    entrypoint: |
+      /bin/sh -c '
+
+      # Initial cert creation (only if doesn't exist)
+      if [ ! -d "/etc/letsencrypt/live/ttj.hu" ]; then
+        certbot certonly \
+          --dns-cloudflare \
+          --dns-cloudflare-credentials /etc/letsencrypt/cloudflare.ini \
+          --email tomjtoth@gmail.com \
+          --agree-tos \
+          --non-interactive \
+          -d *.ttj.hu
+      fi;
+
+      # Renewal loop
+      trap exit TERM;
+      while :; do
+        certbot renew \
+          --dns-cloudflare \
+          --dns-cloudflare-credentials /etc/letsencrypt/cloudflare.ini \
+          --post-hook "echo Certificates renewed!";
+        sleep 12h & wait $${!};
+      done'
 
 networks:
   vp:
