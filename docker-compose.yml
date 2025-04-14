@@ -40,13 +40,12 @@ services:
       - ./certbot.sh:/certbot.sh
       - ~/.cloudflare.ini:/etc/letsencrypt/cloudflare.ini:ro
     entrypoint: /certbot.sh
+    # during initialization of a new VPS the certificate is missing
+    # and nginx would restart every ~ second
     healthcheck:
       test: ["CMD-SHELL", "test -f /etc/letsencrypt/live/ttj.hu/fullchain.pem"]
-      interval: 5s
-      start_period: 0s
-      start_interval: 1s
-      timeout: 10s
-      retries: 12
+      start_period: 2m
+      start_interval: 100ms
 
   # this is a mini-app for a HY course
   done:
