@@ -18,6 +18,7 @@ services:
     networks:
       - default
       - vp
+      - fso
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/snippets:/etc/nginx/snippets
@@ -58,4 +59,8 @@ services:
 networks:
   vp:
     name: veripalvelu_default
+    external: true
+
+  fso:
+    name: fullstack-open_default
     external: true
