@@ -48,12 +48,12 @@ services:
       start_interval: 100ms
 
   # this is a mini-app for a HY course
-  done:
-    container_name: done
+  events:
+    container_name: events
     image: tomjtoth/done
     restart: unless-stopped
     volumes:
-      - ./done-data:/app/data
+      - ./events-data:/app/data
 
 networks:
   vp:
