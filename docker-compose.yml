@@ -28,7 +28,7 @@ services:
     depends_on:
       certbot:
         condition: service_healthy
-      done:
+      events:
         condition: service_started
 
   certbot:
@@ -50,7 +50,7 @@ services:
   # this is a mini-app for a HY course
   events:
     container_name: events
-    image: tomjtoth/done
+    image: tomjtoth/events
     restart: unless-stopped
     volumes:
       - ./events-data:/app/data
