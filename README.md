@@ -1,8 +1,11 @@
 # Kuvaus
 
-Tässä konfiguraatio joka palvelee [Ruotsissa](https://apps.ttj.hu) (kiitos [Oracle Cloud Free Tier](https://www.oracle.com/cloud/free/)).
+Tässä konfiguraatio joka palvelee Ruotsissa (kiitos [Oracle Cloud Free Tier](https://www.oracle.com/cloud/free/)).
+Aktiiviset sovellukset ovat listattuja [täällä](https://ttj.hu#apps).
 
 ## Tuotantoon
+
+Tässä lähinnä muistutukset itselleni.
 
 Aja alla komento joka luo alkuperaisen sertifikaatin ja huolehtii myös sen uusinnasta:
 
