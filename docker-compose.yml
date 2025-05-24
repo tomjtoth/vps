@@ -23,7 +23,6 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./nginx/snippets:/etc/nginx/snippets
       - ~/.vps-certificate:/etc/letsencrypt
-      - ./html:/usr/share/nginx/html
     restart: unless-stopped
     depends_on:
       certbot:
