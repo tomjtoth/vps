@@ -55,6 +55,13 @@ services:
     volumes:
       - ./events-data:/app/data
 
+  saldo:
+    container_name: saldo
+    image: tomjtoth/saldo
+    restart: unless-stopped
+    volumes:
+      - ./saldo-data:/app/data
+
 networks:
   vp:
     name: veripalvelu_default
