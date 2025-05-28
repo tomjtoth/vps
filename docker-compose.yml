@@ -60,6 +60,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./saldo-data:/app/data
+      - ~/.env.saldo:/app/.env
 
 networks:
   vp:
