@@ -50,14 +50,6 @@ services:
       - ./saldo-data:/app/data
       - ~/.env.saldo:/app/.env
 
-  saldo-open:
-    container_name: saldo-open
-    image: tomjtoth/saldo
-    restart: unless-stopped
-    volumes:
-      - ./saldo-open-data:/app/data
-      - ~/.env.saldo:/app/.env
-
 networks:
   vp:
     name: veripalvelu_default
