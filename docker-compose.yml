@@ -46,14 +46,6 @@ services:
       start_period: 2m
       start_interval: 100ms
 
-  # this is a mini-app for a HY course
-  events:
-    container_name: events
-    image: tomjtoth/events
-    restart: unless-stopped
-    volumes:
-      - ./events-data:/app/data
-
   saldo:
     container_name: saldo
     image: tomjtoth/saldo
@@ -65,12 +57,4 @@ services:
 networks:
   vp:
     name: veripalvelu_default
-    external: true
-
-  fso:
-    name: fullstack-open_default
-    external: true
-
-  rb:
-    name: ratebeer_default
     external: true
