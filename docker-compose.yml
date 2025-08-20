@@ -50,6 +50,20 @@ services:
       - ./saldo-data:/app/data
       - ~/.env.saldo:/app/.env
 
+  saldo-staging:
+    container_name: saldo-staging
+    image: tomjtoth/saldo:staging
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: file:data/staging.db
+      AUTH_URL: https://saldo-staging.ttj.hu/api/auth
+
+    volumes:
+      - ./saldo-data:/app/data
+      - ~/.env.saldo:/app/.env
+    command: >
+      sh -c "cp /app/data/prod.db /app/data/staging.db && exec node server.js"
+
 networks:
   vp:
     name: veripalvelu_default
