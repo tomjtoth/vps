@@ -70,7 +70,7 @@ services:
     restart: unless-stopped
     environment:
       DATABASE_URL: file:data/dev.db
-      NODE_ENV: development
+      FORCE_DEV_ENV: true
 
     volumes:
       - ./saldo-data:/app/data
