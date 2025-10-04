@@ -71,6 +71,7 @@ services:
     environment:
       DATABASE_URL: file:data/dev.db
       FORCE_DEV_ENV: true
+      MIGRATE: true
       AUTH_URL: https://saldo-dev.ttj.hu/api/auth
 
     volumes:
