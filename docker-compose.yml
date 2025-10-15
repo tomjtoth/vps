@@ -56,7 +56,7 @@ services:
     restart: unless-stopped
     environment:
       DATABASE_URL: file:data/staging.db
-      AUTH_URL: https://saldo-staging.ttj.hu/api/auth
+      AUTH_URL: https://staging.saldo.ttj.hu/api/auth
 
     volumes:
       - ./saldo-data:/app/data
@@ -72,7 +72,7 @@ services:
       DATABASE_URL: file:data/dev.db
       FORCE_DEV_ENV: true
       MIGRATE: true
-      AUTH_URL: https://saldo-dev.ttj.hu/api/auth
+      AUTH_URL: https://dev.saldo.ttj.hu/api/auth
 
     volumes:
       - ./saldo-data:/app/data

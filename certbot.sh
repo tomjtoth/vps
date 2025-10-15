@@ -9,7 +9,8 @@ if [ ! -d "/etc/letsencrypt/live/ttj.hu" ]; then
         --email tomjtoth@gmail.com \
         --agree-tos \
         --non-interactive \
-        -d *.ttj.hu
+        -d *.ttj.hu \
+        -d *.saldo.ttj.hu
 fi;
 
 # renewal loop
