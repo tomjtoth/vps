@@ -64,20 +64,6 @@ services:
     command: >
       sh -c "cp /app/data/prod.db /app/data/staging.db && exec node server.js"
 
-  saldo-dev:
-    container_name: saldo-dev
-    image: tomjtoth/saldo:dev
-    restart: unless-stopped
-    environment:
-      DATABASE_URL: file:data/dev.db
-      FORCE_DEV_ENV: true
-      MIGRATE: true
-      AUTH_URL: https://dev.saldo.ttj.hu/api/auth
-
-    volumes:
-      - ./saldo-data:/app/data
-      - ~/.env.saldo:/app/.env
-
 networks:
   vp:
     name: veripalvelu_default
