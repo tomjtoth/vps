@@ -55,7 +55,7 @@ services:
     image: tomjtoth/saldo:staging
     restart: unless-stopped
     environment:
-      DATABASE_URL: file:data/staging.db
+      DB_PATH: data/staging.db
       AUTH_URL: https://staging.saldo.ttj.hu/api/auth
 
     volumes:
