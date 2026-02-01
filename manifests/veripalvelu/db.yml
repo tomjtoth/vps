@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: veripalvelu
+  name: veripalvelu-db-dep
+  labels:
+    app: veripalvelu-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: veripalvelu-db
+  template:
+    metadata:
+      labels:
+        app: veripalvelu-db
+    spec:
+      volumes:
+        - name: db-data
+          # I actually don't care about this app's data
+          emptyDir: {}
+
+        # fetching shema.sql for postgres
+        - name: initdb-d
+          emptyDir: {}
+
+      initContainers:
+        - name: fetch-schema-sql
+          image: curlimages/curl:8.17.0
+          command:
+            - sh
+            - -c
+            - |
+              curl -L https://raw.githubusercontent.com/tomjtoth/veripalvelu/refs/heads/main/src/schema.sql \
+                > /data/schema.sql
+
+          volumeMounts:
+            - name: initdb-d
+              mountPath: /data
+
+      containers:
+        - name: veripalvelu-db
+          image: postgres:18.1-alpine3.23
+
+          envFrom:
+            - secretRef:
+                name: veripalvelu-secrets
+
+          volumeMounts:
+            - name: initdb-d
+              mountPath: /docker-entrypoint-initdb.d
+            - name: db-data
+              mountPath: /var/lib/postgresql/data
+
+          readinessProbe:
+            exec:
+              command: ["pg_isready", "-U", "vp"]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: veripalvelu
+  name: veripalvelu-db-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: veripalvelu-db
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

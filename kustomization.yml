@@ -3,3 +3,6 @@ kind: Kustomization
 
 resources:
   - manifests/https.yml
+
+  - manifests/veripalvelu/app.yml
+  - manifests/veripalvelu/db.yml
