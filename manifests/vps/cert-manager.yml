@@ -1,0 +1,31 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-cloudflare
+spec:
+  acme:
+    email: tomjtoth@gmail.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-account-key
+    solvers:
+      - dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              name: cloudflare-api-token
+              key: api-token
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ttj-wildcard
+  namespace: ingress-nginx
+spec:
+  secretName: ttj-wildcard-tls
+  dnsNames:
+    - "*.ttj.hu"
+    - "*.saldo.ttj.hu"
+  issuerRef:
+    name: letsencrypt-cloudflare
+    kind: ClusterIssuer
