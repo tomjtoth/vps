@@ -56,3 +56,11 @@ Tässä lähinnä muistutukset itselleni.
     ```
 
 Serti kattaa jokaisen subdomain:in `*.ttj.hu`, ja käyttää [Cloudflare:in API-tokenin](https://dash.cloudflare.com/profile/api-tokens).
+
+### TODO
+
+Leftovers from docker-compose migration and future extensions:
+
+- re-instate `staging.saldo.ttj.hu`
+  - also create a tagging major/minor/patch bumping script in saldo's repo
+- Oracle's object storage for backups of the backups :)
