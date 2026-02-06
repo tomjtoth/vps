@@ -1,10 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   namespace: saldo
   name: saldo
   labels:
     app: saldo
+
 spec:
   replicas: 1
   selector:
@@ -15,9 +17,14 @@ spec:
       labels:
         app: saldo
     spec:
+      nodeSelector:
+        role: saldo-runner
+
       volumes:
         - name: db
-          emptyDir: {}
+          hostPath:
+            path: /home/ubuntu/saldo-data
+            type: DirectoryOrCreate
       containers:
         - name: saldo
           image: IMAGES/PROD
