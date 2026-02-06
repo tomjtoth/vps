@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: veripalvelu
+  name: veripalvelu-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: veripalvelu
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: veripalvelu
+  name: postgres-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: postgres
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

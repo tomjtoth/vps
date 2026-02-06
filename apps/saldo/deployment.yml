@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: saldo
+  name: saldo
+  labels:
+    app: saldo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: saldo
+  template:
+    metadata:
+      labels:
+        app: saldo
+    spec:
+      volumes:
+        - name: db
+          emptyDir: {}
+      containers:
+        - name: saldo
+          image: IMAGES/PROD
+
+          env:
+            - name: AUTH_TRUST_HOST
+              value: yep
+            - name: AUTH_URL
+              value: https://saldo.ttj.hu/api/auth
+
+          envFrom:
+            - secretRef:
+                name: saldo-secrets
+
+          volumeMounts:
+            - name: db
+              mountPath: /app/data

@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  namespace: saldo
+  name: saldo-ing
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: saldo.ttj.hu
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: saldo-svc
+                port:
+                  number: 80
