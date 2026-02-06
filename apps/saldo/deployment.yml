@@ -33,6 +33,7 @@ spec:
       containers:
         - name: saldo
           image: IMAGES/PROD
+          imagePullPolicy: Always
 
           env:
             - name: AUTH_TRUST_HOST
