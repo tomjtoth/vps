@@ -6,6 +6,6 @@ resources:
   - ingress.yml
 images:
   - name: IMAGES/PROD
-    newName: ""
+    newName: "tomjtoth/saldo:1.0.1"
   - name: IMAGES/STAGING
     newName: tomjtoth/saldo:staging
