@@ -4,9 +4,9 @@ kind: Kustomization
 resources:
   - ..
 
-patchesStrategicMerge:
-  - deployment.yml
-  - ingress.yml
+patches:
+  - path: deployment.yml
+  - path: ingress.yml
 
 namePrefix: staging-
 
