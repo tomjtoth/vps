@@ -32,7 +32,7 @@ spec:
             type: DirectoryOrCreate
       containers:
         - name: saldo
-          image: IMAGES/PROD
+          image: IMAGES/APP
           imagePullPolicy: Always
 
           env:
