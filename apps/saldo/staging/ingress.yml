@@ -1,0 +1,10 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  namespace: saldo
+  name: saldo-ing
+
+spec:
+  rules:
+    - host: staging.saldo.ttj.hu
